@@ -7,9 +7,9 @@ option go_package = "github.com/AXYGEN0141/note-service-api/pkg/note_v1";
 service NoteService{
   rpc CreateNote (CreateNoteRequest) returns (CreateNoteResponse);
   rpc GetNote (GetNoteRequest) returns (GetNoteResponse);
-  //  rpc GetListNote (GetListNote) returns (GetListNote)
-  //  rpc UpdateNote (UpdateNoteRequest) returns (UpdateNoteResponse);
-  //  rpc DeleteNote (DeleteNoteRequest) returns (DeleteNoteResponse);
+  rpc GetListNote (GetListNoteRequest) returns (GetListNoteResponse);
+  rpc UpdateNote (UpdateNoteRequest) returns (UpdateNoteResponse);
+  rpc DeleteNote (DeleteNoteRequest) returns (DeleteNoteResponse);
 }
 
 message CreateNoteRequest {
@@ -32,3 +32,36 @@ message GetNoteResponse {
   string author = 3;
 }
 
+message GetListNoteRequest {
+  repeated int64 ids = 1;
+}
+
+message GetListNoteResponse {
+  message Result {
+    string title = 1;
+    string text = 2;
+    string author = 3;
+  }
+  repeated Result notes = 1;
+}
+
+message UpdateNoteRequest {
+  int64 id = 1;
+  string title = 2;
+  string text = 3;
+  string author = 4;
+}
+
+message UpdateNoteResponse {
+  int64 id = 1;
+  int64 result = 2;
+}
+
+message DeleteNoteRequest {
+  int64 id = 1;
+}
+
+message DeleteNoteResponse {
+  int64 id = 1;
+  int64 result = 2;
+}

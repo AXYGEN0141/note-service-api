@@ -8,10 +8,10 @@ import (
 )
 
 func (n *Note) CreateNote(ctx context.Context, req *desc.CreateNoteRequest) (*desc.CreateNoteResponse, error) {
-	fmt.Println("Note Created")
-	fmt.Println("Title:", req.GetTitle())
-	fmt.Println("Text:", req.GetText())
-	fmt.Println("Author:", req.GetAuthor())
+	fmt.Println("Creating Note")
+	fmt.Println("Title: ", req.GetTitle())
+	fmt.Println("Text: ", req.GetText())
+	fmt.Println("Author: ", req.GetAuthor())
 
 	return &desc.CreateNoteResponse{
 		Id: 1,

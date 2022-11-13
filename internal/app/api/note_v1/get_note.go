@@ -9,11 +9,11 @@ import (
 
 func (n *Note) GetNote(ctx context.Context, req *desc.GetNoteRequest) (*desc.GetNoteResponse, error) {
 	fmt.Println("Getting Note")
-	fmt.Println("Id:", req.GetId())
+	fmt.Println("Note ID: ", req.GetId())
 
 	return &desc.GetNoteResponse{
-		Title:  "Test",
-		Text:   "Test for GetNoteHandler",
+		Title:  "Test Title",
+		Text:   "GetNoteHandler",
 		Author: "Danila",
 	}, nil
 }
