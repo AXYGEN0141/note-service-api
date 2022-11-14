@@ -11,8 +11,5 @@ func (n *Note) DeleteNote(ctx context.Context, req *desc.DeleteNoteRequest) (*de
 	fmt.Println("Deleting Note")
 	fmt.Println("Note ID: ", req.GetId())
 
-	return &desc.DeleteNoteResponse{
-		Id:     req.GetId(),
-		Result: 0,
-	}, nil
+	return &desc.DeleteNoteResponse{}, nil
 }
