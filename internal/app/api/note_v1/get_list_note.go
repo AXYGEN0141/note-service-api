@@ -10,16 +10,16 @@ import (
 )
 
 func (n *Note) GetListNote(ctx context.Context, req *desc.GetListNoteRequest) (*desc.GetListNoteResponse, error) {
-	var sb strings.Builder
+	var ids strings.Builder
 	for i := 0; i < len(req.GetIds()); i++ {
-		sb.WriteString(strconv.FormatInt(req.GetIds()[i], 10))
+		ids.WriteString(strconv.FormatInt(req.GetIds()[i], 10))
 		if i != len(req.GetIds())-1 {
-			sb.WriteString(", ")
+			ids.WriteString(", ")
 		}
 	}
 
 	fmt.Println("Getting List of Notes")
-	fmt.Println("Ids: ", sb)
+	fmt.Println("Ids: ", ids)
 
 	return &desc.GetListNoteResponse{
 		Notes: []*desc.GetListNoteResponse_Result{

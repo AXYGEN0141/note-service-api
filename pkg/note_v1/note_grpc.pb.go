@@ -26,7 +26,7 @@ type NoteServiceClient interface {
 	GetNote(ctx context.Context, in *GetNoteRequest, opts ...grpc.CallOption) (*GetNoteResponse, error)
 	GetListNote(ctx context.Context, in *GetListNoteRequest, opts ...grpc.CallOption) (*GetListNoteResponse, error)
 	UpdateNote(ctx context.Context, in *UpdateNoteRequest, opts ...grpc.CallOption) (*UpdateNoteResponse, error)
-	DeleteNote(ctx context.Context, in *DeleteNoteRequest, opts ...grpc.CallOption) (*DeleteNoteResponse, error)
+	DeleteNote(ctx context.Context, in *DeleteNoteRequest, opts ...grpc.CallOption) (*Empty, error)
 }
 
 type noteServiceClient struct {
@@ -73,8 +73,8 @@ func (c *noteServiceClient) UpdateNote(ctx context.Context, in *UpdateNoteReques
 	return out, nil
 }
 
-func (c *noteServiceClient) DeleteNote(ctx context.Context, in *DeleteNoteRequest, opts ...grpc.CallOption) (*DeleteNoteResponse, error) {
-	out := new(DeleteNoteResponse)
+func (c *noteServiceClient) DeleteNote(ctx context.Context, in *DeleteNoteRequest, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
 	err := c.cc.Invoke(ctx, "/api.note_v1.NoteService/DeleteNote", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -90,7 +90,7 @@ type NoteServiceServer interface {
 	GetNote(context.Context, *GetNoteRequest) (*GetNoteResponse, error)
 	GetListNote(context.Context, *GetListNoteRequest) (*GetListNoteResponse, error)
 	UpdateNote(context.Context, *UpdateNoteRequest) (*UpdateNoteResponse, error)
-	DeleteNote(context.Context, *DeleteNoteRequest) (*DeleteNoteResponse, error)
+	DeleteNote(context.Context, *DeleteNoteRequest) (*Empty, error)
 	mustEmbedUnimplementedNoteServiceServer()
 }
 
@@ -110,7 +110,7 @@ func (UnimplementedNoteServiceServer) GetListNote(context.Context, *GetListNoteR
 func (UnimplementedNoteServiceServer) UpdateNote(context.Context, *UpdateNoteRequest) (*UpdateNoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateNote not implemented")
 }
-func (UnimplementedNoteServiceServer) DeleteNote(context.Context, *DeleteNoteRequest) (*DeleteNoteResponse, error) {
+func (UnimplementedNoteServiceServer) DeleteNote(context.Context, *DeleteNoteRequest) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteNote not implemented")
 }
 func (UnimplementedNoteServiceServer) mustEmbedUnimplementedNoteServiceServer() {}
